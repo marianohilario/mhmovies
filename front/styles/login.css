@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
-
 :root {
     --clr-primary: #e50914;
-    font-family: 'Bebas Neue';
 }
 
 .body--bgimage {
+    color: #fff;
+    background-image: linear-gradient(to bottom, #000000, transparent, transparent, transparent, transparent);
+    letter-spacing: .05em;
     
     & img{
     min-height: 100vh;
@@ -24,23 +24,25 @@
         z-index: -1;
     }
 
-    .container {
+    & .container {
         max-width: 1200px;
         height: 100vh;
         display: flex;
         flex-direction: column;
         margin: 0 auto;
-        color: #fff;
 
         & .header--logo {
+            width: fit-content;
             max-width: 1200px;
-            padding: 1rem 8rem 2rem 8rem;
+            padding: 1.8rem 8rem 2rem 8rem;
             filter: drop-shadow(0 0 .625rem rgba(0, 0, 0, 1));
         
-            & svg {
-            fill: var(--clr-primary);
-            width: 9.25rem;
-            height: 2.5rem;
+            & a {
+                & svg {
+                    fill: var(--clr-primary);
+                    width: 9.25rem;
+                    height: 2.5rem;
+                }
             }
         }
     
@@ -152,15 +154,17 @@
                 }
             }
         }
-    
-        & footer {
+    }
+    & footer {
+        background-color: rgba(0, 0, 0, .7);
+        
+        & .footer {
             max-width: 1200px;
+            margin: 0 auto;
             
-            unicode-bidi: isolate;
             display: flex;
             justify-content: space-between;
             padding: 1rem 8rem;
-            background-color: rgba(0, 0, 0, .7);
     
             & .redes {
                 display: flex;
@@ -172,30 +176,39 @@
 
 
 @media screen and (max-width: 960px) {
-    .header--logo {
-        padding-left: 1rem;
-        & svg {
-            width: 5.5625rem;
-            height: 1.5rem;
+    .body--bgimage {
+        & .container {
+
+            & .header--logo {
+                padding-left: 1rem;
+            
+                & a {
+                    & svg {
+                        width: 7.5625rem;
+                        height: 2rem;
+                    }
+                }
+            }
+        }
+        & footer {
+            & .footer {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                padding: 1rem;
+            }
         }
     }
-
-    .body--bgimage .container footer {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
-    
 }
 
 @media screen and (max-width: 855px) {
-    .body--bgimage .container footer p {
+    .body--bgimage footer .footer p {
         display: none;
     }
 }
 
 @media screen and (max-width: 600px) {
-    .body--bgoverlay .container .header--logo {
+    .container .header--logo {
         margin: 0 1rem 1rem;
     }
 
@@ -210,6 +223,13 @@
             & .header--logo {
                 margin: 0 1.5rem 1.5rem;
                 padding-left: 0;
+
+                & a {
+                    & svg {
+                        width: 5.5625rem;
+                        height: 2rem;
+                    }
+                }
             }
     
             & .main--login {
@@ -236,4 +256,3 @@
         font-size: .875em;
     }
 }
-
