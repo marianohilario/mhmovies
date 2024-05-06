@@ -6,6 +6,7 @@ body {
     overflow-x: hidden;
     color: #fff;
     -webkit-font-smoothing: antialiased;
+    user-select: none;
 }
 
 .index--container {

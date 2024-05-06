@@ -6,6 +6,7 @@
     color: #fff;
     background-image: linear-gradient(to bottom, #000000, transparent, transparent, transparent, transparent);
     letter-spacing: .05em;
+    user-select: none;
     
     & img{
     min-height: 100vh;
