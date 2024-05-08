@@ -1,7 +1,4 @@
-// console.log(tempData);
-
-
-
+console.log(tempData);
 
 
 
@@ -12,7 +9,6 @@
 
 
 const inputs = document.querySelectorAll('input');
-console.log(inputs);
 inputs.forEach((input) => {
    if (input.getAttribute('type') !== 'button') {
      input.onfocus = () => {
