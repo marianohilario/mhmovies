@@ -1,3 +1,10 @@
+
+const url = 'https://api.1rodemayo.com/movies'
+
+$.get(url, (data, status) => {
+  renderFilms(data)
+})
+
 function createItemCard(film) {
     const {poster, rate, genre, duration} = film
 
@@ -107,27 +114,20 @@ function createItemCard(film) {
     item.appendChild(info)
     item.appendChild(genres)
 
-
-    item.addEventListener('mouseover', () => {
-
-    })
     return item
 }
 
-function renderFilms() {
+function renderFilms(data) {
   const container = document.querySelector('.slider')
   container.innerHTML = ''
 
-  const arrFilms = tempData.map(film => {
-      return createItemCard(film)
+  const arrFilms = data.map(film => {
+    return createItemCard(film)
   })
   arrFilms.forEach(item => {
     container.appendChild(item)
   })
 }
-
-
-renderFilms()
 
 
 
