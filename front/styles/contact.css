@@ -1,0 +1,27 @@
+:root {
+    --clr-primary: #e50914;
+}
+
+.navbar-brand svg {
+    filter: drop-shadow(0 0 .625rem rgba(0, 0, 0, 1));
+    fill: var(--clr-primary);
+    width: 7.25rem;
+    height: 2rem;
+}
+
+.caret {
+    border-color: var(--clr-primary) transparent transparent;
+    border-style: solid;
+    border-width: .7rem .6rem 0;
+    margin-left: .625rem;
+    transition: transform 367ms cubic-bezier(.21,0,.07,1);
+}
+
+main .container {
+    max-width: 700px;
+}
+
+.form-control:focus {
+    border-color: rgba(229, 9, 20,.5);
+    box-shadow:0 0 0 .25rem rgba(229,9,20,.25)
+}
