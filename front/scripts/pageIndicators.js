@@ -1,5 +1,13 @@
 function pageIndicators(data) {
-    const numPages = Math.ceil(data.length / 6)
+    let cantFilms = 4
+    if (window.screen.width <= 576) {
+         cantFilms = data.length
+    } else if (window.screen.width <= 990) {
+         cantFilms = 2
+    } else if (window.screen.width <= 1150) {
+        cantFilms = 3
+   }
+    const numPages = Math.ceil(data.length / cantFilms)
 
     for (let index = 0; index < numPages; index++) {
         const indicator = document.createElement('button')
@@ -7,6 +15,7 @@ function pageIndicators(data) {
             indicator.classList.add('active')
         }
         indicator.addEventListener('click', (e) => {
+            const row = document.querySelector('.slider-container')
             row.scrollLeft = index * row.offsetWidth
             document.querySelector('.indicators .active').classList.remove('active')
             e.target.classList.add('active')
