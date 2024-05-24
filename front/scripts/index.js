@@ -3,12 +3,19 @@ const url = require('../utils/constants.js')
 const renderFilms = require('./renderFilms.js')
 const showSearchInput = require('./showSearchInput.js')
 const navbarChangeBgColor = require('./navbarChangeBgColor.js')
+const axios = require('axios')
 
-$.get(url, (data, status) => {
-  console.log(data);
-  renderFilms(data)
-  pageIndicators(data)
-})
+const fetchData = async () => {
+  try {
+    const data = await axios.get(url)
+    renderFilms(data.data)
+    pageIndicators(data.data)
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+fetchData()
 
 const arrowsCarousel = require('./arrowsCarousel.js')
 arrowsCarousel()
