@@ -1,25 +1,19 @@
-const pageIndicators = require('./pageIndicators.js')
 const url = require('../utils/constants.js')
-const renderFilms = require('./renderFilms.js')
-const showSearchInput = require('./showSearchInput.js')
-const navbarChangeBgColor = require('./navbarChangeBgColor.js')
+const domManipulation = require('./DOMManipulation.js')
+const renderCardsFilms = require('./renderCardsFilms.js')
+const renderCarouselFilms = require('./renderFilms.js')
 const axios = require('axios')
 
 const fetchData = async () => {
   try {
-    const data = await axios.get(url)
-    renderFilms(data.data)
-    pageIndicators(data.data)
+    const {data} = await axios.get(url)
+    renderCardsFilms(data)
+    const dataCarousel = data.length > 5 ? data.sort((a,b)=>b.rate-a.rate).slice(0,5) : data.sort((a,b)=>b.rate-a.rate)
+    renderCarouselFilms(dataCarousel)
+    domManipulation()
   } catch (error) {
     console.log(error.message);
   }
 }
 
 fetchData()
-
-const arrowsCarousel = require('./arrowsCarousel.js')
-arrowsCarousel()
-
-showSearchInput()
-
-window.onscroll = () => navbarChangeBgColor()

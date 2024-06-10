@@ -1,15 +1,14 @@
-const createItemCard = require('./createItemCard')
+const createCarouselItem = require('./createCarouselItem.js')
 
-function renderFilms(data) {
-    const container = document.querySelector('.slider')
-    container.innerHTML = ''
+function renderCarouselFilms(data) {
+  const container = document.querySelector('.carousel')
   
     const arrFilms = data.map(film => {
-      return createItemCard(film)
+      return createCarouselItem(film)
     })
     arrFilms.forEach(item => {
       container.appendChild(item)
     })
 }
 
-module.exports = renderFilms
+module.exports = renderCarouselFilms

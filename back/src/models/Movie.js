@@ -23,9 +23,26 @@ const movieSchema = new Schema({
         required: true
     },
     rate: {
-        type: Number
+        type: Number,
+        required: true
     },
     poster: {
+        type: String,
+        required: true
+    },
+    imgTitle: {
+        type: String,
+        required: true
+    },
+    background: {
+        type: String,
+        required: true
+    },
+    trailer: {
+        type: String,
+        required: true
+    },
+    synopsis: {
         type: String,
         required: true
     }

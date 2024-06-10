@@ -1,9 +1,7 @@
 function navbarChangeBgColor() {
-    if (window.scrollY > 60) {
-        document.getElementById('navbar').classList.add('bgDark')
-    } else {
-        document.getElementById('navbar').classList.remove('bgDark')
-    }
+    window.scrollY > 50
+        ? document.querySelector('header').classList.add('scrolled')
+        : document.querySelector('header').classList.remove('scrolled')
 }
 
-module.exports = navbarChangeBgColor
+window.addEventListener('scroll', navbarChangeBgColor)

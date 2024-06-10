@@ -1,5 +1,5 @@
 class Movie {
-  constructor({ title, year, director, duration, genre, rate, poster }) {
+  constructor({ title, year, director, duration, genre, rate, poster, imgTitle, background, trailer, synopsis}) {
     if (!title || !director || !poster) {
       throw Error(
         "Los argumentos title, director y poster son obligatorios"
@@ -12,7 +12,11 @@ class Movie {
     (this.duration = duration),
     (this.genre = genre),
     (this.rate = rate),
-    (this.poster = poster);
+    (this.poster = poster),
+    (this.imgTitle = imgTitle),
+    (this.background = background),
+    (this.trailer = trailer),
+    (this.synopsis = synopsis);
   }
 }
 
