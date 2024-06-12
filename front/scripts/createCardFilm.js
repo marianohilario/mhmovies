@@ -4,21 +4,33 @@ function createCardsFilms(film) {
     const card = document.createElement('div')
     card.classList.add('card')
     
+    const imgCard = document.createElement('div')
+    imgCard.classList.add('card-image','waves-effect','waves-block','waves-light')
     const image = document.createElement('img')
     image.src = poster
+    image.classList.add('activator')
+    imgCard.appendChild(image)
 
     const cardContent = document.createElement('div')
     cardContent.classList.add('card-content')
     const cardTitle = document.createElement('span')
-    cardTitle.classList.add('card-title','grey-text','text-darken-4')
+    cardTitle.classList.add('card-title','activator','grey-text','text-darken-4')
     cardTitle.textContent = title
     cardContent.appendChild(cardTitle)
 
-    const cardReveals = document.createElement('div')
-    cardReveals.classList.add('card-reveals')
-    const cardRevealsTitle = document.createElement('span')
-    cardRevealsTitle.classList.add('card-title','black-text','text-darken-4')
-    cardRevealsTitle.textContent = title
+    const cardReveal = document.createElement('div')
+    cardReveal.classList.add('card-reveal')
+    const closeIcon = document.createElement('i')
+    closeIcon.classList.add('material-icons')
+    closeIcon.textContent = 'close'
+    const cardRevealTitle = document.createElement('span')
+    cardRevealTitle.classList.add('card-title','grey-text','text-darken-4')
+    cardRevealTitle.textContent = title
+    const cardRevealTitleContainer = document.createElement('div')
+    cardRevealTitleContainer.classList.add('titleContainer')
+    cardRevealTitleContainer.appendChild(cardRevealTitle)
+    const cardRevealDetailContainer = document.createElement('div')
+    cardRevealDetailContainer.classList.add('detailContainer')
     const headlines = document.createElement('h4')
     const hlYear = document.createElement('span')
     hlYear.classList.add('year')
@@ -53,16 +65,18 @@ function createCardsFilms(film) {
     play.appendChild(playContent)
     play.innerHTML = `<i class="fa fa-play-circle-o" aria-hidden="true"></i> Watch Trailer`
     play.dataset.trailer = trailer
-    cardReveals.appendChild(cardRevealsTitle)
-    cardReveals.appendChild(headlines)
-    cardReveals.appendChild(hlGenre)
-    cardReveals.appendChild(synop)
-    cardReveals.appendChild(play)
+    cardRevealDetailContainer.appendChild(headlines)
+    cardRevealDetailContainer.appendChild(hlGenre)
+    cardRevealDetailContainer.appendChild(synop)
+    cardRevealDetailContainer.appendChild(play)
+    cardReveal.appendChild(closeIcon)
+    cardReveal.appendChild(cardRevealTitleContainer)
+    cardReveal.appendChild(cardRevealDetailContainer)
 
     
-    card.appendChild(image)
+    card.appendChild(imgCard)
     card.appendChild(cardContent)
-    card.appendChild(cardReveals)
+    card.appendChild(cardReveal)
 
     return card
 

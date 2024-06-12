@@ -1,5 +1,5 @@
 const url = require('../utils/constants.js')
-const domManipulation = require('./DOMManipulation.js')
+const domManipulation = require('./domManipulation.js')
 const renderCardsFilms = require('./renderCardsFilms.js')
 const renderCarouselFilms = require('./renderFilms.js')
 const axios = require('axios')

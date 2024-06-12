@@ -9,4 +9,13 @@ module.exports = {
         res.status(500).send(error)
     }
   },
+  createMovie: async(req, res) => {
+    const {title, year, director, duration, genre, rate, poster, imgTitle, background, trailer, synopsis} = req.body
+    try {
+      const createMovie = await moviesServices.createMovie({title, year, director, duration, genre, rate, poster, imgTitle, background, trailer, synopsis})
+      res.status(201).json(createMovie)
+    } catch (error) {
+      res.status(500).send(error)
+    }
+  }
 };

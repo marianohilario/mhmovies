@@ -139,13 +139,29 @@ header.scrolled {
     line-height: 1.5rem;
 }
 
+.banner.upload {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 0 6.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('https://statics.bigbangnews.com/2023/12/657c79643a1e2.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    transition: .5s;
+}
+
 .banner.sites {
     align-items: start;
     padding-bottom: 85px;
 }
 
 .banner.main::before,
-.banner.history::before {
+.banner.history::before,
+.banner.upload::before {
     content: '';
     position: absolute;
     top: 0;
@@ -157,13 +173,55 @@ header.scrolled {
     background-color: rgba(0, 0, 0, .5);
 }
 
-.sites-content {
-    margin-top: 11rem;
+.sites-content,
+.upload-content {
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.sites-content {
+    margin-top: 11rem;
+}
+
+.upload-content {
+    width: 50vw;
+    /* position: absolute;
+    right: 9.375rem; */
+}
+
+.upload-content form {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: .625rem;
+}
+
+.upload-content form .form-label {
+    color: #222;
+}
+
+.upload-content form input::placeholder,
+.upload-content form textarea::placeholder {
+    color: rgba(0, 0, 0, 0.3);
+    font-size: .9em;
+}
+
+.upload-content #clearAlert,
+.upload-content #saveAlert {
+    background-color: #176541;
+    color: #4af1a5;
+    border-color: #176541;
+    position: absolute;
+    bottom: 10%;
+    right: 0;
+    z-index: 1;
+    display: none;
+}
+
+.upload-content #clearAlert.active,
+.upload-content #saveAlert.active {
+    display: block;
 }
 
 .sites-content .sites {
@@ -289,6 +347,7 @@ header.scrolled {
     position: relative;
     width: 50vw;
     min-width: 600px;
+    max-width: 900px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -337,7 +396,7 @@ header.scrolled {
 .carousel .carousel-item img {
     max-width: 15rem;
     border-radius: .625rem;
-    transform: translateY(-100px);
+    transform: translateY(-70px);
     object-fit: cover;
     object-position: center;
 }
@@ -463,7 +522,7 @@ footer {
     padding: 0 6.25rem;
     margin-bottom: 100px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
 }
@@ -475,32 +534,53 @@ footer {
     width: 20vw;
     object-fit: cover;
     margin-bottom: 0;
-    cursor: pointer;
 }
 
 .allMovies .movies-container .card .card-content {
     height: 120px;
     align-content: center;
     text-align: center;
+    padding: 1rem;
+    position: relative;
 }
 
-.allMovies .movies-container .card .card-reveals {
-    padding: 24px;
+.allMovies .movies-container .card .card-reveal {
+    padding-block: 0;
+}
+
+.allMovies .movies-container .card .card-reveal .material-icons {
     position: absolute;
-    background-color: #eee;
-    width: 100%;
-    overflow-y: auto;
-    left: 0;
-    top: 100%;
-    height: 100%;
-    z-index: 3;
-    display: none;
-    transition: all 1s linear;
+    top: 10px;
+    right: 10px;
+    color: #212121;
 }
 
-.allMovies .movies-container .card:hover .card-reveals {
-    display: block;
-    transform: translateY(-100%);
+.allMovies .movies-container .card .card-reveal .titleContainer {
+    height: 120px;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+.allMovies .movies-container .card .card-reveal .titleContainer span,
+.allMovies .movies-container .card .card-content span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 24px 1rem 1rem;
+    width: 100%;
+    height: 120px;
+}
+
+.allMovies .movies-container .card .card-reveal .detailContainer {
+    background-color: #e9e9e9;
+    height: calc(100% - 120px);
+    width: 100%;    
+    position: absolute;
+    left: 0;
+    top: 120px;
+    padding: 1rem 24px 24px;
 }
 
 .allMovies .movies-container img {
@@ -508,42 +588,43 @@ footer {
     object-fit: cover;
 }
 
-.allMovies .movies-container .card .card-reveals p {
+.allMovies .movies-container .card .card-reveal p {
     padding-top: 1rem;
 }
 
-.allMovies .movies-container .card .card-reveals h4 {
+.allMovies .movies-container .card .card-reveal h4 {
     color: rgba(0, 0, 0, .5);
     font-weight: 400;
     font-size: 1.3rem;
+    margin-top: 0;
 }
 
-.allMovies .movies-container .card .card-reveals h4 span {
+.allMovies .movies-container .card .card-reveal h4 span {
     padding-right: .5rem;
     border-right: 1px solid rgba(0, 0, 0, .5);
     margin-right: .5rem;
 }
 
-.allMovies .movies-container .card .card-reveals h4 span:last-child {
+.allMovies .movies-container .card .card-reveal h4 span:last-child {
     border-right: none;
 }
 
-.allMovies .movies-container .card .card-reveals h4 span .fa {
+.allMovies .movies-container .card .card-reveal h4 span .fa {
     color: #f0c05e;
     padding-right: .5rem;
     display: inline-block;
     border-radius: .125rem;
 }
 
-.allMovies .movies-container .card .card-reveals .genre {
+.allMovies .movies-container .card .card-reveal .genre {
     font-size: 1.1em;
 }
 
-.allMovies .movies-container .card .card-reveals .genre .genreTags {
+.allMovies .movies-container .card .card-reveal .genre .genreTags {
     padding: 0;
 }
 
-.allMovies .movies-container .card .card-reveals .playTrailerBtn {
+.allMovies .movies-container .card .card-reveal .playTrailerBtn {
     position: absolute;
     width: 66%;
     padding: .5rem 1rem;
@@ -569,11 +650,11 @@ footer {
     z-index: 5;
 }
 
-.allMovies .movies-container .card .card-reveals .playTrailerBtn div {
+.allMovies .movies-container .card .card-reveal .playTrailerBtn div {
     -webkit-box-reflect: below -6px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(255, 255, 255, 0.5)));;
 }
 
-.allMovies .movies-container .card .card-reveals .playTrailerBtn i {
+.allMovies .movies-container .card .card-reveal .playTrailerBtn i {
     margin-right: .625rem;
     font-size: 2rem;
     cursor: pointer;
@@ -591,6 +672,7 @@ footer {
 
     .play {
         left: 3.25rem;
+        bottom: 4.125rem;
     }
 
     .sci {
@@ -601,6 +683,10 @@ footer {
 @media screen and (max-width: 1024px) {
     header {
         flex-direction: column;
+    }
+
+    .play {
+        bottom: 22.125rem;
     }
 
     .mainNav {
@@ -621,8 +707,14 @@ footer {
         font-size: 1.1em;
     }
 
-    .sites-content {
+    .sites-content,
+    .banner .upload-content {
         margin-top: 14rem;
+    }
+
+    .banner .upload-content {
+        margin-block: 14rem;
+        width: 100%;
     }
 }
 
@@ -633,7 +725,7 @@ footer {
         padding-top: 9.375rem;
         align-items: start;
         justify-content: center;
-        padding-top: 15.375rem;
+        padding-top: 11.375rem;
     }
     
     .banner .content {
@@ -648,12 +740,29 @@ footer {
     .sites-content {
         margin-top: 2rem;
     }
+
+    .play {
+        bottom: 6.125rem;
+    }
 }
 
 @media screen and (max-width: 780px) {
+    .banner {
+        padding-top: 17.375rem;
+    }
+
+    .play {
+        bottom: 4.125rem;
+    }
+
     .mainNav {
         flex-direction: column;
         gap: 1.25rem;
+    }
+
+    .banner.upload {
+        background-image: none;
+        background-color: #222;
     }
 }
 
@@ -672,6 +781,10 @@ footer {
 }
 
 @media screen and (max-width: 600px) {
+    .banner .carousel-box {
+        min-width: 100%;
+    }
+
     .carousel {
         perspective: 700px;
         height: 25rem;
@@ -680,8 +793,9 @@ footer {
     .carousel .carousel-item {
         width: 13.625rem;
     }
+
     .carousel .carousel-item img {
-        transform: translate(calc((100vw - 600px) / 2), -40px);
+        transform: translate(0px, -40px);
     }
 }
 
@@ -718,5 +832,13 @@ footer {
 
     .sci a {
         font-size: 1.35rem;
+    }
+
+    footer {
+        padding: 1rem;
+    }
+
+    footer .staticPages a:last-child {
+        margin-top: 1rem;
     }
 }
