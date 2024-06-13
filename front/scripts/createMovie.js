@@ -1,12 +1,17 @@
 const form = document.getElementById("form");
 const btnClear = document.getElementById("btnClear");
 const btnSave = document.getElementById("btnSave");
+const btnUpdate = document.getElementById("btnUpdate");
+const btnCancel = document.getElementById("btnCancel");
 const alerts = {
     clear: document.getElementById("clearAlert"),
-    save: document.getElementById("saveAlert")
+    save: document.getElementById("saveAlert"),
+    update: document.getElementById("updateAlert")
 };
 const axios = require("axios");
 const url = require("../utils/constants.js");
+const renderCrudCards = require("./renderCRUDCards.js");
+const crudCardMovieManipulation = require("./crudMovieManipulation.js");
 
 const inputElements = {
     title: document.getElementById("title"),
@@ -19,7 +24,11 @@ const inputElements = {
     imgTitle: document.getElementById("imgTitle"),
     synopsis: document.getElementById("synopsis"),
     genre: document.getElementById("genre"),
-    rate: document.getElementById("rate")
+    rate: document.getElementById("rate"),
+    save: document.getElementById("save"),
+    update: document.getElementById("update"),
+    clean: document.getElementById("clean"),
+    cancel: document.getElementById("cancel")
 };
 
 const clearForm = () => {
@@ -74,10 +83,34 @@ const postMovie = async (movieData) => {
     }
 };
 
+const putMovie = async (movieData) => {
+    try {
+        const updateMovie = await axios.put(url + `/${btnUpdate.dataset.id}`, movieData);
+        return updateMovie;
+    } catch (error) {
+        console.log(error.message);
+        throw error;
+    }
+};
+
 btnClear.addEventListener("click", (e) => {
     e.preventDefault();
     clearForm();
     showAlert(alerts.clear);
+});
+
+btnCancel.addEventListener("click", (e) => {
+    e.preventDefault();
+    clearForm();
+    const toggleClasses = (element, addClass, removeClass) => {
+        element.classList.add(addClass);
+        element.classList.remove(removeClass);
+    };
+
+    toggleClasses(inputElements.save, 'd-block', 'd-none');
+    toggleClasses(inputElements.clean, 'd-block', 'd-none');
+    toggleClasses(inputElements.update, 'd-none', 'd-block');
+    toggleClasses(inputElements.cancel, 'd-none', 'd-block');
 });
 
 btnSave.addEventListener("click", async (e) => {
@@ -90,6 +123,27 @@ btnSave.addEventListener("click", async (e) => {
             await postMovie(movieData);
             clearForm();
             showAlert(alerts.save);
+            setTimeout(() => location.reload(), 3000);
+        } catch (error) {
+            console.log("Error updating movie:", error.message);
+        }
+        form.classList.remove("was-validated");
+    } else {
+        console.log("Form data is invalid.");
+    }
+});
+
+btnUpdate.addEventListener("click", async (e) => {
+    e.preventDefault();
+    const movieData = getMovieData();
+    form.classList.add("was-validated");
+
+    if (isValidData(movieData)) {
+        try {
+            await putMovie(movieData);
+            clearForm();
+            showAlert(alerts.update);
+            setTimeout(() => location.reload(), 3500);
         } catch (error) {
             console.log("Error saving movie:", error.message);
         }
@@ -98,3 +152,17 @@ btnSave.addEventListener("click", async (e) => {
         console.log("Form data is invalid.");
     }
 });
+
+const fetchData = async () => {
+    try {
+      const {data} = await axios.get(url)
+      renderCrudCards(data)
+      crudCardMovieManipulation()
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+  
+  fetchData()
+
+  module.exports = {clearForm}

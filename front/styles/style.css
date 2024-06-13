@@ -208,19 +208,22 @@ header.scrolled {
 }
 
 .upload-content #clearAlert,
-.upload-content #saveAlert {
+.upload-content #saveAlert,
+.upload-content #updateAlert {
     background-color: #176541;
     color: #4af1a5;
     border-color: #176541;
     position: absolute;
-    bottom: 10%;
-    right: 0;
+    bottom: 100%;
+    right: 0%;
+    width: max-content;
     z-index: 1;
     display: none;
 }
 
 .upload-content #clearAlert.active,
-.upload-content #saveAlert.active {
+.upload-content #saveAlert.active,
+.upload-content #updateAlert.active {
     display: block;
 }
 
@@ -660,6 +663,71 @@ footer {
     cursor: pointer;
 }
 
+.listMovies {
+    padding: 3rem 6.25rem;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.listMovies .card {
+    max-width: 30vw;
+    min-width: 300px;
+}
+
+.listMovies .card img {
+    height: 100%;
+    object-fit: fill;
+    object-position: left;
+}
+
+.listMovies .card h4 {
+    color: #222;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.listMovies .card h4 span {
+    padding-right: .625rem;
+    margin-right: .625rem;
+    border-right: 1px solid #222;
+}
+
+.listMovies .card .genre {
+    font-size: 0.9rem;
+}
+
+.listMovies .card h4 span:last-child {
+    border-right: none;
+}
+
+.listMovies .card h4 span i {
+    color: #f0c05e;
+    padding-right: .5rem;
+    display: inline-block;
+    border-radius: .125rem;
+}
+
+.listMovies .card p {
+    font-size: 1em;
+    font-weight: 300;
+    line-height: 1.5em;
+    margin: .625rem 0 1.25rem;
+}
+
+.listMovies .card .cardButtons a {
+    height: max-content;
+}
+
+.listMovies .card .cardButtons .bi-trash3-fill {
+    margin-left: 2rem;
+}
+
+.upload-content #btnUpdate {
+    background-color: orangered;
+    border-color: orangered;
+}
 
 @media screen and (max-width: 1200px) {
     header {

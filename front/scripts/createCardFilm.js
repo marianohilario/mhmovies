@@ -78,6 +78,11 @@ function createCardsFilms(film) {
     card.appendChild(cardContent)
     card.appendChild(cardReveal)
 
+    card.addEventListener('mouseleave', () => {
+      card.style = 'overflow: visible'
+      cardReveal.style = 'display: none; transform: translateY'
+    })
+
     return card
 
 }
