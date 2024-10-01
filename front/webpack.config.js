@@ -12,7 +12,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: "./pages/sites.html", // Apunta a tu archivo HTML principal
+            template: "./index.html", // Apunta a tu archivo HTML principal
             filename: "index.html", // Nombre de salida
             chunks: ["index"], // Asegúrate de que inserte el script correcto
         }),
